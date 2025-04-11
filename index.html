@@ -1,0 +1,96 @@
+<!DOCTYPE html> <!-- Define o tipo de documento como HTML5 -->
+<html lang="pt-BR"> <!-- Define o idioma da página como português do Brasil -->
+<head>
+  <meta charset="UTF-8"> <!-- Define a codificação de caracteres como UTF-8 -->
+  <title>Cadastro de Produtos</title> <!-- Título da aba do navegador -->
+  <style>
+    /* Estilos básicos para aparência */
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    input, button { margin: 5px 0; padding: 5px; }
+    #produtos-lista { margin-top: 20px; }
+    .produto-item { margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+  <h2>📦 Cadastro de Produtos</h2> <!-- Título principal da página -->
+
+  <!-- Formulário com dois campos de entrada -->
+  <form id="form-produto">
+    <label>Nome do Produto:</label><br> <!-- Rótulo para o campo de nome -->
+    <input type="text" id="nome" required><br> <!-- Campo de texto obrigatório -->
+
+    <label>Preço:</label><br> <!-- Rótulo para o campo de preço -->
+    <input type="number" id="preco" required><br> <!-- Campo numérico obrigatório -->
+
+    <button type="submit">Cadastrar Produto</button> <!-- Botão que envia o formulário -->
+  </form>
+
+  <!-- Área onde os produtos cadastrados serão exibidos -->
+  <div id="produtos-lista">
+    <h3>📝 Produtos Cadastrados:</h3>
+    <div id="lista"></div> <!-- Local onde os produtos aparecerão -->
+  </div>
+
+  <script>
+    // Variável do tipo array para armazenar os produtos cadastrados
+    let produtos = [];
+
+    // Declaração de função chamada cadastrarProduto, com dois parâmetros
+    function cadastrarProduto(nome, preco) {
+      // Criação de um objeto produto com nome e preço convertidos em número
+      const produto = {
+        nome: nome,
+        preco: parseFloat(preco) // Função parseFloat converte string para número decimal
+      };
+
+      // Adiciona o novo produto ao array produtos
+      produtos.push(produto);
+
+      // Chama a função para exibir todos os produtos na tela
+      exibirProdutos();
+    }
+
+    // Declaração de função para exibir os produtos cadastrados na página
+    function exibirProdutos() {
+      const lista = document.getElementById("lista"); // Seleciona o elemento <div id="lista">
+      lista.innerHTML = ""; // Limpa o conteúdo atual da lista (se houver)
+
+      // Percorre o array produtos com um laço for
+      for (let i = 0; i < produtos.length; i++) {
+        // Cria um novo elemento <div> para cada produto
+        const item = document.createElement("div");
+        item.className = "produto-item"; // Adiciona uma classe CSS
+
+        // Define o conteúdo do item com nome e preço formatado com 2 casas decimais
+        item.innerText = `🛒 ${produtos[i].nome} - R$ ${produtos[i].preco.toFixed(2)}`;
+
+        // Adiciona esse item dentro da lista na página
+        lista.appendChild(item);
+      }
+    }
+
+    // Captura o formulário HTML através do id
+    const form = document.getElementById("form-produto");
+
+    // Adiciona um ouvinte de evento para o botão de envio do formulário
+    form.addEventListener("submit", function(event) {
+      event.preventDefault(); // Impede o comportamento padrão de recarregar a página
+
+      // Captura os valores digitados nos campos de entrada
+      const nome = document.getElementById("nome").value;
+      const preco = document.getElementById("preco").value;
+
+      // Verifica se os campos estão preenchidos
+      if (nome !== "" && preco !== "") {
+        // Chama a função para cadastrar o produto com os valores digitados
+        cadastrarProduto(nome, preco);
+
+        // Limpa os campos do formulário para o próximo cadastro
+        form.reset();
+      }
+    });
+  </script>
+
+</body>
+</html>
