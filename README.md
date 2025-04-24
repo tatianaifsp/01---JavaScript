@@ -2,13 +2,15 @@
 
 aula 01
 Conceitual
+Estrutura
+Variaveis
 Operadores
 estrutura de dados
-função
+função/function/
 
 aula 02
+DOM
 Eventos
-
 
 aula 03
 Objetos
