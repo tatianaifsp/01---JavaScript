@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel de Controle da Máquina</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Painel de Controle - Máquina Industrial</h1>
+
+    <div class="status">
+      <p><strong>Status:</strong> <span id="status">Desligada</span></p>
+      <p><strong>Temperatura:</strong> <span id="temperatura">--</span> °C</p>
+      <p><strong>Pressão:</strong> <span id="pressao">--</span> bar</p>
+    </div>
+
+    <div class="botoes">
+      <button onclick="ligarMaquina()">Ligar</button>
+      <button onclick="desligarMaquina()">Desligar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
